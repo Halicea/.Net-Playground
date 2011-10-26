@@ -8,6 +8,10 @@ namespace PlayGround.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+
+        }
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject.Web.Mvc;
+using PlayGround.Controllers;
 namespace PlayGround
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -28,15 +29,20 @@ namespace PlayGround
             );
 
         }
+
         protected override void OnApplicationStarted()
         {
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
         protected override Ninject.IKernel CreateKernel()
         {
-            return new Ninject.StandardKernel();
+            var kernel = new Ninject.StandardKernel();
+            kernel.Bind<string>().ToConstant("kosta").WhenInjectedInto<HomeController>();
+            return kernel;
+
         }
     }
 }
